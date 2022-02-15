@@ -26,6 +26,8 @@ def speak(text):
 
 if __name__ == '__main__':
     print('hi')
-    speak('nice to meet you')
+    speak('How are you')
+    
+
 
 
