@@ -6,16 +6,15 @@ BOTNAME = config('BOTNAME')
 
 engine = pyttsx3.init('sapi5')
 
-# Set Rate
-engine.setProperty('rate', 190)
 
-# Set Volume
-engine.setProperty('volume', 1.0)
-
-# Set Voice (Female)
-voices = engine.getProperty('voices')
-
-engine.setProperty('voice', voices[0].id)
+def set_voice(gender):
+    if gender == 'female':
+        index = 1
+    elif gender == 'male':
+        index = 0
+    voices = engine.getProperty('voices')
+    engine.setProperty('voice', voices[index].id)
+    
 
 
 def speak(text):
@@ -25,7 +24,9 @@ def speak(text):
 
 
 if __name__ == '__main__':
-    print('hi')
+    engine.setProperty('rate', 150)
+    engine.setProperty('volume', 1.0)
+    set_voice('male')
     speak('How are you')
     
 
