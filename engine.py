@@ -3,6 +3,7 @@ from decouple import config
 from datetime import datetime
 import speech_recognition as sr
 from random import choice
+from nltk.corpus import wordnet
 
 
 
@@ -10,6 +11,7 @@ USERNAME = config('USER')
 BOTNAME = config('BOTNAME')
 
 engine = pyttsx3.init('sapi5')
+
 
 def set_voice(gender):
     if gender == 'female':
@@ -39,7 +41,9 @@ def greet():
 
 
 def process(query):
+    #print(tpydict.getSynonyms('open'))
     print(query)
+    
 
 
 def take_command():
@@ -54,7 +58,8 @@ def take_command():
     try:
         print('Recognizing...')
         query = r.recognize_google(audio, language='en-us')
-        if 'exit' in query:
+        exit_commands = ['exit', 'stop']
+        if any(cmd in query for cmd in exit_commands):
             speak('take care sir, goodbye for now')
             exit()
         process(query)
@@ -70,7 +75,8 @@ if __name__ == '__main__':
     engine.setProperty('rate', 190)
     engine.setProperty('volume', 1.5)
     set_voice('male')
-    greet()
+    print(wordnet.synsets("good"))
+    #greet()
     take_command()
     
 
