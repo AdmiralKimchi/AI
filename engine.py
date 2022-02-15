@@ -38,13 +38,17 @@ def greet():
 
 
 
-def take_command():
+def process(query):
+    print(query)
 
+
+def take_command():
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print('Listening....')
         r.adjust_for_ambient_noise(source, duration=0.5)
-        r.pause_threshold = 1
+        r.pause_threshold = 0.8
+        r.energy_threshold = 300
         audio = r.listen(source)
 
     try:
@@ -53,7 +57,7 @@ def take_command():
         if 'exit' in query:
             speak('take care sir, goodbye for now')
             exit()
-        print(query)
+        process(query)
        
     except Exception:
         speak('Sorry, I could not understand. Could you please say that again?')
@@ -66,7 +70,7 @@ if __name__ == '__main__':
     engine.setProperty('rate', 190)
     engine.setProperty('volume', 1.5)
     set_voice('male')
-    #greet()
+    greet()
     take_command()
     
 
