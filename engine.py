@@ -75,8 +75,7 @@ if __name__ == '__main__':
     engine.setProperty('rate', 190)
     engine.setProperty('volume', 1.5)
     set_voice('male')
-    print(wordnet.synsets("good"))
-    #greet()
+    greet()
     take_command()
     
 
