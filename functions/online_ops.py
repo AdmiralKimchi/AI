@@ -10,8 +10,9 @@ def find_my_ip():
     return ip_address
 
 def search_wikipedia(query):
-    print('-->',query)
     results = wikipedia.summary(query, sentences=3)
     return results
 
-#print(search_wikipedia('batman'))
+
+def search_google(query):
+    kit.search(query)

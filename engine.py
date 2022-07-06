@@ -45,19 +45,26 @@ def greet():
 
 
 
-def searching_web(query):
-    return "what is" in query
+def is_searching_web(query):
+    question_words = ["what", "why", "when", "where", 
+             "name", "is", "how", "do", "does", 
+             "which", "are", "could", "would", 
+             "should", "has", "have", "whom", "who", "whose", "don't"]
+    return any(x in query[0] for x in question_words)
+    
+    
 
 def process(query):
     proc = nlp.LanguageProcessor()
     query = query.casefold()
-    query = proc.remove_stop_words(query)
+
     print(query)
     if 'open' in query:
         ops.execute(query)
 
-    if searching_web(query):
-        web.search_wikipedia(query)
+    if is_searching_web(proc.strtok(query)):
+        print(proc.find_nouns(query))
+        web.search_google(query)
     
 
 
@@ -66,11 +73,11 @@ def take_command():
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print('Listening....')
-        r.adjust_for_ambient_noise(source, duration=0.5)
+        r.adjust_for_ambient_noise(source, duration=0.3)
         r.pause_threshold = 0.8
         r.energy_threshold = 400
         try:
-            audio = r.listen(source, timeout=10.0)
+            audio = r.listen(source, timeout=15.0)
         except Exception:
             print('nothing was said')
 
