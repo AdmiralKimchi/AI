@@ -3,8 +3,9 @@ from decouple import config
 from datetime import datetime
 import speech_recognition as sr
 from random import choice
-from nltk.corpus import wordnet
 import functions.os_ops as ops
+import functions.online_ops as web
+import nltk
 
 
 
@@ -41,25 +42,20 @@ def greet():
 
 
 
+def searching_web(query):
+    return "what is" in query
+
 def process(query):
     query = query.casefold()
     print(query)
-    if 'cmd' in query:
-        speak('cmd')
-        ops.open_cmd()
-    if 'calculator' in query:
-        print('calculator')
-        ops.open_app('calculator')
-    if 'chrome' in query:
-        ops.open_app('chrome')
-    if 'code' in query:
-        ops.open_app('vscode')
-    if 'camera' in query:
-        ops.open_camera()
+    if 'open' in query:
+        ops.execute(query)
 
-
-
+    if searching_web(query):
+        print(nltk.word_tokenize(query))
+        web.search_wikipedia(query)
     
+
 
 
 def take_command():
