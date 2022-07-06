@@ -1,2 +1,2 @@
 # JARVIS
-A virtual personal assistant, might change the name later
+A virtual personal assistant and conversational bot (under construction)
