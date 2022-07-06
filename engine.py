@@ -4,6 +4,7 @@ from datetime import datetime
 import speech_recognition as sr
 from random import choice
 from nltk.corpus import wordnet
+import functions.os_ops as ops
 
 
 
@@ -36,13 +37,28 @@ def greet():
         speak(f"Good afternoon {USERNAME}")
     elif hour in range(16, 23):
         speak(f"Good evening {USERNAME}")
-    speak(f"I am {BOTNAME}. How may I assist you?")
+    #speak(f"I am {BOTNAME}. How may I assist you?")
 
 
 
 def process(query):
-    #print(tpydict.getSynonyms('open'))
+    query = query.casefold()
     print(query)
+    if 'cmd' in query:
+        speak('cmd')
+        ops.open_cmd()
+    if 'calculator' in query:
+        print('calculator')
+        ops.open_app('calculator')
+    if 'chrome' in query:
+        ops.open_app('chrome')
+    if 'code' in query:
+        ops.open_app('vscode')
+    if 'camera' in query:
+        ops.open_camera()
+
+
+
     
 
 
@@ -52,8 +68,11 @@ def take_command():
         print('Listening....')
         r.adjust_for_ambient_noise(source, duration=0.5)
         r.pause_threshold = 0.8
-        r.energy_threshold = 300
-        audio = r.listen(source)
+        r.energy_threshold = 400
+        try:
+            audio = r.listen(source, timeout=10.0)
+        except Exception:
+            print('nothing was said')
 
     try:
         print('Recognizing...')
