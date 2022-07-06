@@ -1,2 +1,2 @@
 # JARVIS
-A virtual personal assistant and conversational bot (under construction)
+A virtual personal assistant for Windows and conversational bot 
