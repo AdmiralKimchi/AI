@@ -5,7 +5,7 @@ import speech_recognition as sr
 from random import choice
 import functions.os_ops as ops
 import functions.online_ops as web
-import nltk
+import nlp
 
 
 
@@ -32,12 +32,15 @@ def speak(text):
 
 def greet():
     hour = datetime.now().hour
-    if hour in range(6, 12):
+    if hour in range(4, 12):
         speak(f"Good Morning {USERNAME}")
     elif hour in range(12, 16):
         speak(f"Good afternoon {USERNAME}")
     elif hour in range(16, 23):
         speak(f"Good evening {USERNAME}")
+    else:
+        speak(f"Good night {USERNAME}")
+
     #speak(f"I am {BOTNAME}. How may I assist you?")
 
 
@@ -46,13 +49,14 @@ def searching_web(query):
     return "what is" in query
 
 def process(query):
+    proc = nlp.LanguageProcessor()
     query = query.casefold()
+    query = proc.remove_stop_words(query)
     print(query)
     if 'open' in query:
         ops.execute(query)
 
     if searching_web(query):
-        print(nltk.word_tokenize(query))
         web.search_wikipedia(query)
     
 

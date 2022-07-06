@@ -4,17 +4,17 @@ import subprocess as sp
 paths = {
     'calculator': "C:\\Windows\\System32\\calc.exe",
     'chrome': "C:\\Program Files\\Google\\Chrome\\Application\\chrome",
-    'vscode': "C:\\Users\\Mehrshad\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+    'vscode': "C:\\Users\\Mehrshad\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe",
+    'cmd': "C:\\WINDOWS\\system32\\cmd.exe"
 
 }
 
 
 def execute(query):
     if 'cmd' in query:
-        speak('cmd')
-        open_cmd()
+        open_app('cmd')
     if 'camera' in query:
-        ops.open_camera()
+        open_camera()
     if 'calculator' in query:
         print('calculator')
         open_app('calculator')
