@@ -1,2 +1,2 @@
-# E.D.R.I.S
+# JARVIS
 A virtual personal assistant for Windows and conversational bot 
