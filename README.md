@@ -1,5 +1,5 @@
 # JARVIS
-A virtual personal assistant for Windows and conversational bot 
+A virtual personal assistant for Windows and conversational bot, the name is obviously inspired by Tony Stark's J.A.R.V.I.S
 
 ### What JARVIS can do
 Jarvis has two modes of operation, `query` and `conversation` <br>
