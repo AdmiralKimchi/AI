@@ -89,7 +89,7 @@ def take_command():
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print('Listening....')
-        r.adjust_for_ambient_noise(source, duration=0.3)
+        r.adjust_for_ambient_noise(source, duration=0.06)
         r.pause_threshold = 0.8
         r.energy_threshold = 600
         try:
@@ -100,7 +100,7 @@ def take_command():
     try:
         print('Recognizing...')
         query = r.recognize_google(audio, language='en-us')
-        exit_commands = ['exit', 'stop']
+        exit_commands = ['exit', 'stop', 'goodbye']
         if any(cmd in query for cmd in exit_commands):
             speak('take care sir, goodbye for now')
             exit()
