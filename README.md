@@ -4,7 +4,7 @@ A virtual personal assistant for Windows and conversational bot, the name is obv
 ### What JARVIS can do
 Jarvis has two modes of operation, `query` and `conversation` <br>
 #### Query mode
-In `query` mode it can open applications, send email, search the web and ...  do many things that <br>
+In this mode it can open applications, send email, search the web and ...  do many things that <br>
 you expect from a virtual assistant.
 
 #### Conversation mode
