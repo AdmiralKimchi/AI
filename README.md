@@ -9,3 +9,6 @@ you expect from a virtual assistant.
 
 #### Conversation mode
 In this mode Jarvis turns into a conversational bot that you can speek with casually about anything. (this mode is still not added)
+
+### How to use it
+in order to try JARVIS simply download sources and run `requirements.py` script to download all requirements, then run `engine.py` and start talking
