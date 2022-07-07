@@ -10,9 +10,9 @@ import joblib
 import numpy as np
 import pickle
 
-LOG_MODE = False
+LOG_MODE = True
 TRAIN_MODE = False
-TEST_MODE = True
+TEST_MODE = False
 
 class LanguageProcessor():
     def __init__(self):
@@ -46,6 +46,11 @@ class LanguageProcessor():
         words = self.strtok(sentence)
         nouns = [word for (word, pos) in nltk.pos_tag(words) if is_noun(pos)] 
         return nouns
+
+    def pos_tag(self, sentence):
+        words = self.strtok(sentence)
+        return nltk.pos_tag(words)
+
 
 
     def load_question_model(self):
@@ -115,3 +120,4 @@ if __name__ == '__main__':
         print(lp.stem("it is not necessarily that stem needs to exist and have a meaning"))
         print(lp.lematize("tell me what the meaning of life is"))
         print(lp.find_nouns("tell me what the meaning of life is"))
+        print(lp.pos_tag("tell me what the meaning of life is"))

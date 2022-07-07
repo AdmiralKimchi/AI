@@ -11,6 +11,7 @@ USERNAME = config('USER')
 BOTNAME = config('BOTNAME')
 
 engine = pyttsx3.init('sapi5')
+proc = nlp.LanguageProcessor()
 
 
 def set_voice(gender):
@@ -56,10 +57,15 @@ def is_question(query_class, tokenized):
     elif query_class[0] == 'Statement':
         return any(x in tokenized[0] for x in question_words)
 
+def is_imperative(query):
+    tagged = proc.pos_tag(query)
+    if tagged[0][1] == 'VB':
+        return True
+    else: return False
+
     
 
 def process(query):
-    proc = nlp.LanguageProcessor()
     query = query.casefold()
     clf = proc.load_question_model()
     vectorizer = proc.tf_idf_vect
@@ -71,6 +77,10 @@ def process(query):
     if is_question(query_class, proc.strtok(query)):
         print(proc.find_nouns(query))
         web.search_google(query)
+
+    elif is_imperative(query):
+        print('yes') #TODO
+
     
 
 
