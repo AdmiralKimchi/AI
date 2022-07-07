@@ -5,6 +5,8 @@ from email.message import EmailMessage
 import smtplib
 from decouple import config
 from googlesearch import search
+import webbrowser
+
 
 def find_my_ip():
     ip_address = requests.get('https://api64.ipify.org?format=json').json()
@@ -17,3 +19,7 @@ def search_wikipedia(query):
 
 def search_google(query):
     kit.search(query)
+
+def open_website(query):
+    print(query)
+    webbrowser.open(query)

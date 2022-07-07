@@ -73,7 +73,10 @@ def process(query):
     query_class = clf.predict(vectorizer.transform([query])) 
  
     if ('open' in query) or ('start' in query):
-        ops.execute(query)
+        if 'website' in query:
+            web.open_website(query)
+        else:
+            ops.execute(query)
 
     elif is_question(query_class, proc.strtok(query)):
         noun_list = proc.find_nouns(query) 
