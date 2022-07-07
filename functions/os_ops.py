@@ -5,7 +5,8 @@ paths = {
     'calculator': "C:\\Windows\\System32\\calc.exe",
     'chrome': "C:\\Program Files\\Google\\Chrome\\Application\\chrome",
     'vscode': "C:\\Users\\Mehrshad\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe",
-    'cmd': "C:\\WINDOWS\\system32\\cmd.exe"
+    'cmd': "C:\\WINDOWS\\system32\\cmd.exe",
+    'telegram': "F:\\Programs\\Telegram Desktop\\Telegram.exe"
 
 }
 
@@ -22,6 +23,9 @@ def execute(query):
         open_app('chrome')
     if 'code' in query:
         open_app('vscode')
+    if 'telegram' in query:
+        open_app('telegram')
+
 
 
 

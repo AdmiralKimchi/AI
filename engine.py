@@ -7,8 +7,6 @@ import functions.os_ops as ops
 import functions.online_ops as web
 import nlp
 
-
-
 USERNAME = config('USER')
 BOTNAME = config('BOTNAME')
 
@@ -57,6 +55,9 @@ def is_searching_web(query):
 def process(query):
     proc = nlp.LanguageProcessor()
     query = query.casefold()
+    clf = proc.load_question_model()
+    vectorizer = proc.tf_idf_vect
+    #print(clf.predict(vectorizer.transform(['who is michael jordan'])))
 
     print(query)
     if 'open' in query:
@@ -75,9 +76,9 @@ def take_command():
         print('Listening....')
         r.adjust_for_ambient_noise(source, duration=0.3)
         r.pause_threshold = 0.8
-        r.energy_threshold = 400
+        r.energy_threshold = 600
         try:
-            audio = r.listen(source, timeout=15.0)
+            audio = r.listen(source)
         except Exception:
             print('nothing was said')
 
