@@ -71,11 +71,12 @@ def process(query):
     vectorizer = proc.tf_idf_vect
     query_class = clf.predict(vectorizer.transform([query])) 
  
-    if 'open' in query:
+    if ('open' in query) or ('start' in query):
         ops.execute(query)
 
-    if is_question(query_class, proc.strtok(query)):
-        print(proc.find_nouns(query))
+    elif is_question(query_class, proc.strtok(query)):
+        noun_list = proc.find_nouns(query) 
+        print(noun_list)
         web.search_google(query)
 
     elif is_imperative(query):
@@ -91,7 +92,7 @@ def take_command():
         print('Listening....')
         r.adjust_for_ambient_noise(source, duration=0.06)
         r.pause_threshold = 0.8
-        r.energy_threshold = 600
+        r.energy_threshold = 800
         try:
             audio = r.listen(source)
         except Exception:

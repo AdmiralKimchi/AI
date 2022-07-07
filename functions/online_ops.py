@@ -4,6 +4,7 @@ import pywhatkit as kit
 from email.message import EmailMessage
 import smtplib
 from decouple import config
+from googlesearch import search
 
 def find_my_ip():
     ip_address = requests.get('https://api64.ipify.org?format=json').json()

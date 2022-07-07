@@ -6,11 +6,12 @@ from nltk.stem.wordnet import WordNetLemmatizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.metrics import classification_report
+from sklearn.model_selection import cross_val_score
 import joblib
 import numpy as np
 import pickle
 
-LOG_MODE = True
+LOG_MODE = False
 TRAIN_MODE = False
 TEST_MODE = False
 
@@ -84,7 +85,9 @@ class LanguageProcessor():
         y_test = y[int(len(posts_text)*0.2):]
 
         # Fitting Gradient Boosting classifier to the Training set
-        gb = GradientBoostingClassifier(n_estimators = 400, random_state=0) 
+        gb = GradientBoostingClassifier(learning_rate=0.008, n_estimators=800, random_state=0) 
+        score = cross_val_score(gb, X_train, y_train, cv=5)  #5 fold cross val
+        print("cross validation score: ",score.mean())
   
         gb.fit(X_train, y_train)
         predictions_rf = gb.predict(X_test)
@@ -120,4 +123,4 @@ if __name__ == '__main__':
         print(lp.stem("it is not necessarily that stem needs to exist and have a meaning"))
         print(lp.lematize("tell me what the meaning of life is"))
         print(lp.find_nouns("tell me what the meaning of life is"))
-        print(lp.pos_tag("tell me what the meaning of life is"))
+        print(lp.pos_tag("do tell me what the meaning of life is"))
