@@ -59,6 +59,7 @@ def is_question(query_class, tokenized):
 
 def is_imperative(query):
     tagged = proc.pos_tag(query)
+    print('----->', tagged)
     if tagged[0][1] == 'VB':
         return True
     else: return False
