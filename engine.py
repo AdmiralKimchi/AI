@@ -44,7 +44,6 @@ def greet():
 
 
 
-
 def is_question(query_class, tokenized):
     question_words = [ 
              "is", "do", "does", 
@@ -59,19 +58,13 @@ def is_question(query_class, tokenized):
 
     
 
-
-    
-    
-
 def process(query):
     proc = nlp.LanguageProcessor()
     query = query.casefold()
     clf = proc.load_question_model()
     vectorizer = proc.tf_idf_vect
     query_class = clf.predict(vectorizer.transform([query])) 
-    print('->',query_class)
-    
-    print(query)
+ 
     if 'open' in query:
         ops.execute(query)
 
