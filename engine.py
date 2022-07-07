@@ -43,12 +43,23 @@ def greet():
 
 
 
-def is_searching_web(query):
-    question_words = ["what", "why", "when", "where", 
-             "name", "is", "how", "do", "does", 
-             "which", "are", "could", "would", 
-             "should", "has", "have", "whom", "who", "whose", "don't"]
-    return any(x in query[0] for x in question_words)
+
+
+def is_question(query_class, tokenized):
+    question_words = [ 
+             "is", "do", "does", 
+             "are", "could", "can", "would", 
+             "should", "has", "have"
+             ]
+
+    if query_class[0] in ['whQuestion', 'ynQuestion']:
+        return True
+    elif query_class[0] == 'Statement':
+        return any(x in tokenized[0] for x in question_words)
+
+    
+
+
     
     
 
@@ -57,13 +68,14 @@ def process(query):
     query = query.casefold()
     clf = proc.load_question_model()
     vectorizer = proc.tf_idf_vect
-    #print(clf.predict(vectorizer.transform(['who is michael jordan'])))
-
+    query_class = clf.predict(vectorizer.transform([query])) 
+    print('->',query_class)
+    
     print(query)
     if 'open' in query:
         ops.execute(query)
 
-    if is_searching_web(proc.strtok(query)):
+    if is_question(query_class, proc.strtok(query)):
         print(proc.find_nouns(query))
         web.search_google(query)
     
@@ -92,7 +104,7 @@ def take_command():
         process(query)
        
     except Exception:
-        speak('Sorry, I could not understand. Could you please say that again?')
+        speak('Sorry, I could not understand. say that again')
         query = 'None'
     take_command()
     return query
