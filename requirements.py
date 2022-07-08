@@ -10,6 +10,10 @@ os.system('cmd /c "pip install python-decouple"')
 os.system('cmd /c "pip install numpy"')
 os.system('cmd /c "pip install pyaudio"')
 os.system('cmd /c "pip install numpy"')
+os.system('cmd /c "pip install beautifulsoup4"')
+os.system('cmd /c "pip install google"')
+os.system('cmd /c "pip install sklearn"')
+
 
 
 
