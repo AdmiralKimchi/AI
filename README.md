@@ -7,8 +7,8 @@ Jarvis has two modes of operation, `query` and `conversation` <br>
 In this mode it can open applications, send email, search the web and ...  do many things that <br>
 you expect from a virtual assistant.
 
-#### Conversation mode
-In this mode Jarvis turns into a conversational bot that you can speek with casually about anything. (this mode is still not added)
+#### Conversation mode (still in progess)
+In this mode Jarvis turns into a conversational bot that you can speek with casually about anything. 
 
 ### How to use it
 In order to try JARVIS simply download sources and run `requirements.py` script to download all requirements, then run `engine.py` and start talking
