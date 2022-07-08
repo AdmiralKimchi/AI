@@ -9,6 +9,7 @@ os.system('cmd /c "pip install nltk"')
 os.system('cmd /c "pip install python-decouple"')
 os.system('cmd /c "pip install numpy"')
 os.system('cmd /c "pip install pyaudio"')
+os.system('cmd /c "pip install numpy"')
 
 
 
