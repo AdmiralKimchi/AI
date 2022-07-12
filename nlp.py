@@ -13,7 +13,7 @@ import pickle
 
 LOG_MODE = False
 TRAIN_MODE = False
-TEST_MODE = False
+TEST_MODE = True
 
 class LanguageProcessor():
     def __init__(self):

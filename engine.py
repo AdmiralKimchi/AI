@@ -71,6 +71,7 @@ def process(query):
     clf = proc.load_question_model()
     vectorizer = proc.tf_idf_vect
     query_class = clf.predict(vectorizer.transform([query])) 
+    print('test')
  
     if ('open' in query) or ('start' in query):
         if 'website' in query:
@@ -96,7 +97,7 @@ def take_command():
         print('Listening....')
         r.adjust_for_ambient_noise(source, duration=0.06)
         r.pause_threshold = 0.8
-        r.energy_threshold = 800
+        r.energy_threshold = 1000
         try:
             audio = r.listen(source)
         except Exception:
