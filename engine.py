@@ -72,8 +72,12 @@ def process(query):
     vectorizer = proc.tf_idf_vect
     query_class = clf.predict(vectorizer.transform([query])) 
     print('test')
+
+    if any(cmd in query for cmd in ['exit', 'stop', 'goodbye']):
+        speak('take care sir, goodbye for now')
+        exit()
  
-    if ('open' in query) or ('start' in query):
+    elif ('open' in query) or ('start' in query):
         if 'website' in query:
             web.open_website(query)
         else:
@@ -106,15 +110,12 @@ def take_command():
     try:
         print('Recognizing...')
         query = r.recognize_google(audio, language='en-us')
-        exit_commands = ['exit', 'stop', 'goodbye']
-        if any(cmd in query for cmd in exit_commands):
-            speak('take care sir, goodbye for now')
-            exit()
         process(query)
        
     except Exception:
         speak('Sorry, I could not understand. say that again')
         query = 'None'
+        
     take_command()
     return query
      
